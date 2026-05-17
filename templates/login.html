@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login – Budget Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-950 flex items-center justify-center px-4">
+
+  <div class="w-full max-w-md bg-gray-900 rounded-2xl shadow-xl p-8">
+
+    <!-- Header -->
+    <div class="mb-8 text-center">
+      <h1 class="text-3xl font-bold text-white">Budget Tracker</h1>
+      <p class="mt-2 text-gray-400 text-sm">Sign in to manage your finances</p>
+    </div>
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="mb-6 rounded-lg bg-red-500/10 border border-red-500/30 px-4 py-3">
+          {% for message in messages %}
+            <p class="text-red-400 text-sm">{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Login form -->
+    <form method="POST" action="/" class="space-y-5">
+
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-300 mb-1">
+          Email address
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+          placeholder="you@example.com"
+          class="w-full rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500
+                 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500
+                 focus:border-transparent transition"
+        />
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-300 mb-1">
+          Password
+        </label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          required
+          placeholder="••••••••"
+          class="w-full rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500
+                 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500
+                 focus:border-transparent transition"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="w-full rounded-lg bg-purple-600 hover:bg-purple-500 active:bg-purple-700
+               text-white font-semibold py-2.5 text-sm transition focus:outline-none
+               focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+      >
+        Sign in
+      </button>
+
+    </form>
+
+    <!-- Register link -->
+    <p class="mt-6 text-center text-sm text-gray-500">
+      Don't have an account?
+      <a href="/register" class="text-purple-400 hover:text-purple-300 font-medium transition">
+        Create one
+      </a>
+    </p>
+
+  </div>
+
+</body>
+</html>
