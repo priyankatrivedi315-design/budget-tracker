@@ -7,6 +7,8 @@
 # - Add expenses (auto deduction)
 # - Dashboard, Wallet, Transactions, Goals, Budget, Analytics, Settings
 
+import os
+
 from flask import Flask, render_template, request, redirect, session, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -14,7 +16,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "secret123"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///budget.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI', 'sqlite:///budget.db')
 
 db = SQLAlchemy(app)
 
